@@ -1,17 +1,11 @@
 # Dataset — Garantido x Caprichoso
 
-As imagens não são versionadas neste repositório (direitos de imagem de terceiros). Organize seu dataset localmente/no Drive seguindo esta estrutura antes de rodar o notebook:
-
 ```
 dataset/
-├── garantido/     # fotos do boi Garantido (vermelho e branco)
-└── caprichoso/    # fotos do boi Caprichoso (azul e branco)
+├── garantido/     # 70 imagens do boi Garantido (vermelho e branco)
+└── caprichoso/    # 51 imagens do boi Caprichoso (azul e branco)
 ```
 
-Recomendações:
-- Pelo menos ~100–150 imagens por classe (mais = melhor, transfer learning tolera datasets pequenos).
-- Formatos aceitos: `.jpg`, `.jpeg`, `.png`.
-- Prefira fotos variadas: boi estilizado, galera nas arquibancadas com as cores do time, bandeiras, itens/alegorias — sempre respeitando direitos autorais de quem tirou a foto.
-- Fontes possíveis: fotos próprias tiradas no Festival de Parintins, perfis oficiais das agremiações, bancos de imagem com licença livre.
+Imagens coletadas do [Wikimedia Commons](https://commons.wikimedia.org), categorias [`Category:Boi Garantido`](https://commons.wikimedia.org/wiki/Category:Boi_Garantido) e [`Category:Boi Caprichoso`](https://commons.wikimedia.org/wiki/Category:Boi_Caprichoso) (e subcategorias de torcida/bandeiras), todas sob licenças livres (CC-BY, CC-BY-SA ou domínio público). A licença e autoria de cada imagem individual estão na respectiva página de arquivo no Commons.
 
-O notebook (`transfer_learning_garantido_caprichoso.ipynb`) traz 3 formas de carregar o dataset no Colab: montar o Google Drive, subir um `dataset.zip`, ou clonar este repositório.
+Querendo ampliar o dataset com fotos próprias (do Festival, de eventos locais, etc.), basta adicionar os arquivos `.jpg`/`.png` na pasta da classe correspondente — o notebook lê todas as imagens de `dataset/garantido/` e `dataset/caprichoso/` automaticamente.

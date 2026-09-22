@@ -1,9 +1,3 @@
-# Imagens do dataset (não versionadas — ver dataset/README.md)
-dataset/garantido/*
-dataset/caprichoso/*
-!dataset/garantido/.gitkeep
-!dataset/caprichoso/.gitkeep
-
 # Colab / Jupyter
 .ipynb_checkpoints/
 

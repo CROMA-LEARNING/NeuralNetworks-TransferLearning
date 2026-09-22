@@ -29,16 +29,16 @@ O notebook compara duas abordagens:
 .
 ├── transfer_learning_garantido_caprichoso.ipynb   # notebook principal (Colab)
 ├── dataset/
-│   ├── garantido/       # imagens do boi Garantido (não versionadas)
-│   ├── caprichoso/      # imagens do boi Caprichoso (não versionadas)
-│   └── README.md        # como montar o dataset
+│   ├── garantido/       # 70 imagens do boi Garantido
+│   ├── caprichoso/      # 51 imagens do boi Caprichoso
+│   └── README.md        # fonte e licença das imagens
 └── images/               # capturas de tela do processo/resultados
 ```
 
 ## Como executar
 
 1. Abra `transfer_learning_garantido_caprichoso.ipynb` no [Google Colab](https://colab.research.google.com/).
-2. Monte seu dataset seguindo [`dataset/README.md`](dataset/README.md) (Google Drive, upload de zip, ou clone deste repo).
+2. Clone este repositório (o dataset já vem incluso) ou monte o seu próprio seguindo [`dataset/README.md`](dataset/README.md).
 3. Execute as células em ordem: baseline → VGG16 congelada → treino → avaliação → predição.
 
 ## Resultados
@@ -59,3 +59,4 @@ _A preencher após o treino:_
 ## Créditos
 
 - Notebook base: material de apoio do desafio "Transfer Learning" da formação em Deep Learning — [DIO](https://www.dio.me).
+- Imagens: [Wikimedia Commons](https://commons.wikimedia.org) — ver [`dataset/README.md`](dataset/README.md) para fontes e licenças.
