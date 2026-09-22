@@ -29,8 +29,8 @@ O notebook compara duas abordagens:
 .
 ├── transfer_learning_garantido_caprichoso.ipynb   # notebook principal (Colab)
 ├── dataset/
-│   ├── garantido/       # 70 imagens do boi Garantido
-│   ├── caprichoso/      # 51 imagens do boi Caprichoso
+│   ├── garantido/       # 59 imagens do boi Garantido
+│   ├── caprichoso/      # 37 imagens do boi Caprichoso
 │   └── README.md        # fonte e licença das imagens
 └── images/               # capturas de tela do processo/resultados
 ```

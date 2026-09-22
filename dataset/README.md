@@ -2,8 +2,8 @@
 
 ```
 dataset/
-├── garantido/     # 70 imagens do boi Garantido (vermelho e branco)
-└── caprichoso/    # 51 imagens do boi Caprichoso (azul e branco)
+├── garantido/     # 59 imagens do boi Garantido (vermelho e branco)
+└── caprichoso/    # 37 imagens do boi Caprichoso (azul e branco)
 ```
 
 Imagens coletadas do [Wikimedia Commons](https://commons.wikimedia.org), categorias [`Category:Boi Garantido`](https://commons.wikimedia.org/wiki/Category:Boi_Garantido) e [`Category:Boi Caprichoso`](https://commons.wikimedia.org/wiki/Category:Boi_Caprichoso) (e subcategorias de torcida/bandeiras), todas sob licenças livres (CC-BY, CC-BY-SA ou domínio público). A licença e autoria de cada imagem individual estão na respectiva página de arquivo no Commons.
