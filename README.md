@@ -29,10 +29,10 @@ O notebook compara duas abordagens:
 .
 ├── transfer_learning_garantido_caprichoso.ipynb   # notebook principal (Colab)
 ├── dataset/
-│   ├── garantido/       # 59 imagens do boi Garantido
-│   ├── caprichoso/      # 37 imagens do boi Caprichoso
+│   ├── garantido/       # 118 imagens do boi Garantido
+│   ├── caprichoso/      # 107 imagens do boi Caprichoso
 │   └── README.md        # fonte e licença das imagens
-└── images/               # capturas de tela do processo/resultados
+└── results/              # gráficos e métricas gerados pelo notebook (600 DPI)
 ```
 
 ## Como executar
@@ -59,4 +59,4 @@ _A preencher após o treino:_
 ## Créditos
 
 - Notebook base: material de apoio do desafio "Transfer Learning" da formação em Deep Learning — [DIO](https://www.dio.me).
-- Imagens: [Wikimedia Commons](https://commons.wikimedia.org) — ver [`dataset/README.md`](dataset/README.md) para fontes e licenças.
+- Imagens: [Wikimedia Commons](https://commons.wikimedia.org) e [Openverse](https://openverse.org)/Flickr (Aleam) — ver [`dataset/README.md`](dataset/README.md) para fontes e licenças.
