@@ -43,18 +43,22 @@ O notebook compara duas abordagens:
 
 ## Resultados
 
-_A preencher após o treino:_
+Treino final com as 225 imagens (split estratificado 70/15/15 → 35 imagens de teste), 40 épocas com early stopping, class weights e data augmentation leve no treino.
 
-| Modelo | Acurácia (teste) |
-|---|---|
-| Baseline (do zero) | — |
-| Transfer Learning (VGG16) | — |
+| Modelo | Acurácia | Precisão | Recall (sensibilidade) | F1-score |
+|---|---|---|---|---|
+| Baseline (do zero) | 0.914 | 0.917 | 0.911 | 0.913 |
+| Transfer Learning (VGG16) | 0.771 | 0.773 | 0.775 | 0.771 |
+
+Surpresa: o **baseline treinado do zero superou o Transfer Learning** nesse caso. A explicação mais provável é que a tarefa é dominada por um sinal de **cor** bem forte (vermelho x azul), que uma CNN rasa aprende diretamente dos pixels sem esforço — enquanto a VGG16, pré-treinada na ImageNet para reconhecer formas e texturas de objetos, com apenas a camada final destravada (feature extraction puro), não se readapta tão bem a um sinal dominado por cor. Fine-tuning das últimas camadas convolucionais da VGG16 (em vez de mantê-las 100% congeladas) é o próximo passo natural para tentar fechar essa diferença.
+
+Gráficos completos (curvas de loss/acurácia, matriz de confusão, curva ROC, comparação de métricas) em [`results/`](results/), gerados a 600 DPI.
 
 ## Aprendizados
 
-- Transfer learning reduz drasticamente a quantidade de dados necessária para um classificador de imagens ter boa performance.
-- Congelar as camadas convolucionais e treinar só a camada final é rápido e já entrega ganhos expressivos sobre o baseline.
-- Um bom dataset (variado, bem rotulado) importa mais que o volume bruto de imagens.
+- Transfer learning nem sempre vence um baseline simples — depende de quão bem as features da rede pré-treinada (ImageNet: formas, texturas, objetos) se alinham com o sinal que realmente separa as classes do seu problema. Aqui o sinal é cor, e uma CNN rasa aprendeu isso mais rápido que a VGG16 com feature extraction puro.
+- Curadoria de dataset importa mais que o volume bruto: boa parte do trabalho foi remover imagens contaminadas (com os dois bois na mesma foto, ou sem nenhum boi visível) mineradas de fontes públicas.
+- Dataset pequeno e um pouco desbalanceado (118 x 107) pede split estratificado, `class_weight` e augmentation leve — sem isso as métricas de validação ficam bem instáveis entre épocas.
 
 ## Créditos
 
