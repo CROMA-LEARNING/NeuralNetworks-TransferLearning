@@ -77,6 +77,8 @@ A cor média das imagens de Garantido tem o canal vermelho bem acima dos outros 
 
 Isso também explica por que a VGG16 perde para o baseline aqui. Ela foi pré-treinada para reconhecer objetos pela forma e pela textura, não pela cor média da imagem. Com as camadas convolucionais totalmente congeladas, só a última camada é treinada, e ela não consegue recalibrar a sensibilidade a cor das camadas anteriores. O resultado não é uma falha do método, é um descompasso entre o que a rede pré-treinada sabe fazer bem e o que este problema específico pede.
 
+**Verificação do orçamento de treino.** Outra hipótese razoável era viés de número de épocas: no log, o baseline parou na época 20 e o Transfer Learning na época 32, o que parece dar mais treino a um dos dois. Na prática os dois usaram exatamente a mesma regra, `epochs=40` com `EarlyStopping(patience=8, restore_best_weights=True)`, e cada um parou sozinho ao ficar 8 épocas sem melhorar seu `val_loss`. Como os pesos restaurados são sempre os da melhor época, o que importa é comparar esses pontos: o baseline atingiu `val_loss` de 0.178 na época 12, e o Transfer Learning nunca passou de 0.427, atingido na época 24, doze épocas depois de o baseline já ter parado. Da época 18 até a 32 o `val_loss` do Transfer Learning só oscila entre 0.43 e 0.47, sem tendência de queda, sinal de que já tinha estabilizado. Não é falta de tempo de treino, é o mesmo atalho de cor que ele não consegue explorar.
+
 Outros dois fatores menos relevantes, mas que valem registro:
 
 - Cerca de 19% das imagens de Caprichoso vêm de uma única sessão de fotos, mesmo fotógrafo e mesmo evento. Não é duplicata, mas pode carregar um viés leve de iluminação ou fundo daquele dia específico.
