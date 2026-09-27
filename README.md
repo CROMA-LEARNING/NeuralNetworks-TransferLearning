@@ -56,8 +56,8 @@ Treino final com as 225 imagens do dataset, split estratificado 70/15/15, o que 
 
 | Modelo | Acurácia | Precisão | Recall (sensibilidade) | F1-score |
 |---|---|---|---|---|
-| Baseline, do zero | 0.914 | 0.917 | 0.911 | 0.913 |
-| Transfer Learning, VGG16 | 0.771 | 0.773 | 0.775 | 0.771 |
+| Baseline, do zero | 0.886 | 0.893 | 0.880 | 0.883 |
+| Transfer Learning, VGG16 | 0.771 | 0.783 | 0.780 | 0.771 |
 
 O baseline treinado do zero superou o Transfer Learning. Esse resultado chamou atenção o suficiente para investigar a fundo se havia algum problema no dataset ou no experimento. A análise está na próxima seção.
 
@@ -77,7 +77,7 @@ A cor média das imagens de Garantido tem o canal vermelho bem acima dos outros 
 
 Isso também explica por que a VGG16 perde para o baseline aqui. Ela foi pré-treinada para reconhecer objetos pela forma e pela textura, não pela cor média da imagem. Com as camadas convolucionais totalmente congeladas, só a última camada é treinada, e ela não consegue recalibrar a sensibilidade a cor das camadas anteriores. O resultado não é uma falha do método, é um descompasso entre o que a rede pré-treinada sabe fazer bem e o que este problema específico pede.
 
-**Verificação do orçamento de treino.** Outra hipótese razoável era viés de número de épocas: no log, o baseline parou na época 20 e o Transfer Learning na época 32, o que parece dar mais treino a um dos dois. Na prática os dois usaram exatamente a mesma regra, `epochs=40` com `EarlyStopping(patience=8, restore_best_weights=True)`, e cada um parou sozinho ao ficar 8 épocas sem melhorar seu `val_loss`. Como os pesos restaurados são sempre os da melhor época, o que importa é comparar esses pontos: o baseline atingiu `val_loss` de 0.178 na época 12, e o Transfer Learning nunca passou de 0.427, atingido na época 24, doze épocas depois de o baseline já ter parado. Da época 18 até a 32 o `val_loss` do Transfer Learning só oscila entre 0.43 e 0.47, sem tendência de queda, sinal de que já tinha estabilizado. Não é falta de tempo de treino, é o mesmo atalho de cor que ele não consegue explorar.
+**Verificação do orçamento de treino.** Outra hipótese razoável era viés de número de épocas. Os dois modelos usam exatamente a mesma regra, `epochs=40` com `EarlyStopping(patience=8, restore_best_weights=True)`, mas o resultado real foi o oposto do que se esperaria se fosse só falta de tempo de treino: o baseline convergiu e parou sozinho na época 37, com seu melhor `val_loss`, 0.143, já alcançado na época 29. O Transfer Learning nunca acionou o early stopping, rodou as 40 épocas completas, sempre melhorando um pouco a cada época, e mesmo assim seu `val_loss` só chegou a 0.395 na última época, quase três vezes pior que o do baseline. Ou seja, a VGG16 teve o mesmo orçamento de treino do baseline, sem nunca estagnar a ponto de acionar a parada antecipada, e ainda assim não chegou perto, o teto de desempenho dela nesse problema é mais baixo, não é uma questão de tempo.
 
 Outros dois fatores menos relevantes, mas que valem registro:
 
